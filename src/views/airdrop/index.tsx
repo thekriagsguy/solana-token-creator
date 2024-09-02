@@ -1,4 +1,4 @@
-import React, { FC, useEffect, useCallback } from "react";
+import React, { FC, useEffect, useCallback, Dispatch, SetStateAction } from "react";
 import useUserSOLBalanceStore from "../../stores/useUserSOLBalanceStore";
 import { useConnection, useWallet } from "@solana/wallet-adapter-react";
 import { LAMPORTS_PER_SOL, TransactionSignature } from "@solana/web3.js";
@@ -7,7 +7,12 @@ import { AiOutlineClose } from "react-icons/ai";
 
 import Branding from "../../components/Branding";
 
-export const AirdropView: FC = ({setOpenAirdrop}) => {
+interface AirdropViewProps {
+  setOpenAirdrop: Dispatch<SetStateAction<boolean>>;
+}
+
+
+export const AirdropView: FC<AirdropViewProps> = ({setOpenAirdrop}) => {
 
   const wallet = useWallet();
   const { connection } = useConnection();

@@ -1,10 +1,14 @@
-import { FC } from "react";
+import React, { FC, Dispatch, SetStateAction } from "react";
 import { MdGeneratingTokens } from "react-icons/md";
 import { WalletMultiButton } from "@solana/wallet-adapter-react-ui";
 
 import pkg from "../../../package.json";
 
-export const HomeView: FC = ({setOpenCreateModal}) => {
+interface HomeViewProps {
+  setOpenCreateModal: Dispatch<SetStateAction<boolean>>;
+}
+
+export const HomeView: FC<HomeViewProps> = ({setOpenCreateModal}) => {
   return(
     <section id="home" className="relative overflow-hidden pb-20 pt-[72px]">
       <div className="px-6 py-4">

@@ -1,12 +1,15 @@
-import React, { FC } from "react";
+import React, { FC, Dispatch, SetStateAction } from "react";
 import { useForm, ValidationError } from "@formspree/react";
 import { AiOutlineClose } from "react-icons/ai";
 import { notify } from "../../utils/notifications";
 
 import Branding from "../../components/Branding";
 
+interface ContactViewProps {
+  setOpenContact: Dispatch<SetStateAction<boolean>>;
+}
 
-export const ContactView: FC = ({setOpenContact}) => {
+export const ContactView: FC<ContactViewProps> = ({setOpenContact}) => {
 
   const [state, handleSubmit] = useForm("mpzvwvlp");
 
@@ -58,7 +61,7 @@ export const ContactView: FC = ({setOpenContact}) => {
                         <input type="email" id="email" name="email" className="border-default-200 block w-full rounded border-white/10 bg-transparent py-1.5 px-3 text-white/80 focus:border-white/25 focus:ring-transparent" placeholder="email"></input>
                       </div>
                       <ValidationError prefix="Email" field="email" errors={state.errors} />
-                      <textarea name="message" id="message" rows="6" className="border-default-200 relative block w-full rounded border-white/10 bg-transparent py-1.5 px-3 text-white/80 focus:border-white/25 focus:ring-transparent" placeholder="message"></textarea>
+                      <textarea name="message" id="message" rows={6} className="border-default-200 relative block w-full rounded border-white/10 bg-transparent py-1.5 px-3 text-white/80 focus:border-white/25 focus:ring-transparent" placeholder="message"></textarea>
                       <ValidationError prefix="Message" field="message" errors={state.errors} />
                     
                       <div className="mb-6 text-center">

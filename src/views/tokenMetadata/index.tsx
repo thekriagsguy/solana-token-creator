@@ -1,4 +1,4 @@
-import React, { FC, useState, useCallback } from "react";
+import React, { FC, useState, useCallback, Dispatch, SetStateAction } from "react";
 import { useConnection } from "@solana/wallet-adapter-react";
 import { PublicKey } from "@solana/web3.js";
 import { Metadata, PROGRAM_ID } from "@metaplex-foundation/mpl-token-metadata";
@@ -9,7 +9,11 @@ import { notify } from "../../utils/notifications";
 import { InputView } from "../input";
 import Branding from "../../components/Branding";
 
-export const TokenMetadata: FC = ({setOpenTokenMetaData}) => {
+interface TokenMetadataProps {
+  setOpenTokenMetaData: Dispatch<SetStateAction<boolean>>;
+}
+
+export const TokenMetadata: FC<TokenMetadataProps> = ({setOpenTokenMetaData}) => {
   const { connection } = useConnection();
   const [tokenAddress, setTokenAddress] = useState("");
   const [tokenMetadata, setTokenMetadata] = useState(null);

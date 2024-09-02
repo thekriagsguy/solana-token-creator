@@ -1,4 +1,4 @@
-import React, { FC, useCallback, useState } from "react";
+import React, { FC, useCallback, useState, Dispatch, SetStateAction } from "react";
 import { useConnection, useWallet } from "@solana/wallet-adapter-react";
 import { Keypair, PublicKey, SystemProgram, Transaction } from "@solana/web3.js";
 import { MINT_SIZE, TOKEN_PROGRAM_ID, createInitializeMintInstruction, getMinimumBalanceForRentExemptMint, getAssociatedTokenAddress, createMintToInstruction, createAssociatedTokenAccountInstruction } from "@solana/spl-token";
@@ -13,7 +13,11 @@ import CreateSVG from "../../components/SVG/CreateSVG";
 import Branding from "../../components/Branding";
 import { InputView } from "../index";
 
-export const CreateView: FC = ({ setOpenCreateModal }) => {
+interface CreateViewProps {
+  setOpenCreateModal: Dispatch<SetStateAction<boolean>>;
+}
+
+export const CreateView: FC<CreateViewProps> = ({ setOpenCreateModal }) => {
   const { connection } = useConnection();
   const { publicKey, sendTransaction } = useWallet();
   const { networkConfiguration } = useNetworkConfiguration();
@@ -31,7 +35,7 @@ export const CreateView: FC = ({ setOpenCreateModal }) => {
     description: ""
   });
 
-  const handleFormFieldChange = (fieldName, e) => {
+  const handleFormFieldChange = (fieldName: any, e: any) => {
     setToken({...token, [fieldName]: e.target.value});
   };
 
@@ -65,7 +69,7 @@ export const CreateView: FC = ({ setOpenCreateModal }) => {
             data: {
               name: token.name,
               symbol: token.symbol,
-              uri: metadataUrl,
+              uri: metadataUrl || '',
               creators: null,
               sellerFeeBasisPoints: 0,
               uses: null,
@@ -127,7 +131,7 @@ export const CreateView: FC = ({ setOpenCreateModal }) => {
     }, [publicKey, connection, sendTransaction]
   );
 
-  const handleImageChange = async(event) => {
+  const handleImageChange = async(event: any) => {
     const file = event.target.files[0];
 
     if (file) {
@@ -136,7 +140,7 @@ export const CreateView: FC = ({ setOpenCreateModal }) => {
     }
   };
 
-  const uploadImagePinata = async (file) => {
+  const uploadImagePinata = async (file: any) => {
     if (file) {
       try {
         const formData = new FormData();
@@ -163,7 +167,7 @@ export const CreateView: FC = ({ setOpenCreateModal }) => {
     }
   };
 
-  const uploadMetadata = async(token) => {
+  const uploadMetadata = async(token: any) => {
     setIsLoading(true);
     const { name, symbol, description, image } = token;
 
@@ -235,7 +239,7 @@ export const CreateView: FC = ({ setOpenCreateModal }) => {
                     }
                   </div>
 
-                  <textarea rows="6" onChange={(e) => handleFormFieldChange("description", e)} className="border-default-200 relative mt-48 block w-full rounded border-white/10 bg-transparent py-1.5 px-3 text-white/80 focus:border-white/25 focus:ring-transparent" placeholder="Description of your Token"></textarea>
+                  <textarea rows={6} onChange={(e) => handleFormFieldChange("description", e)} className="border-default-200 relative mt-48 block w-full rounded border-white/10 bg-transparent py-1.5 px-3 text-white/80 focus:border-white/25 focus:ring-transparent" placeholder="Description of your Token"></textarea>
                 </div>
 
                 <div className="lg:ps-0 flex flex-col p-10">

@@ -33,7 +33,7 @@ const Home: NextPage = (props) => {
         setOpenContact={setOpenContact}
         setOpenCreateModal={setOpenCreateModal}
         setOpenSendTransaction={setOpenSendTransaction}
-        setopenTokenMetaData={setOpenTokenMetaData}
+        setOpenTokenMetaData={setOpenTokenMetaData}
       />
 
       <OfferView />

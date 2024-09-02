@@ -1,4 +1,4 @@
-import React, { FC, useEffect, useState, useCallback } from "react";
+import React, { FC, useEffect, useState, useCallback, Dispatch, SetStateAction } from "react";
 import useUserSOLBalanceStore from "../../stores/useUserSOLBalanceStore";
 import { useConnection, useWallet } from "@solana/wallet-adapter-react";
 import { LAMPORTS_PER_SOL, TransactionSignature, PublicKey, SystemProgram, Transaction } from "@solana/web3.js";
@@ -8,7 +8,12 @@ import { AiOutlineClose } from "react-icons/ai";
 import { InputView } from "../input";
 import Branding from "../../components/Branding";
 
-export const DonateView: FC = ({setOpenSendTransaction}) => {
+interface DonateViewProps {
+  setOpenSendTransaction: Dispatch<SetStateAction<boolean>>;
+}
+
+
+export const DonateView: FC<DonateViewProps> = ({setOpenSendTransaction}) => {
   const wallet = useWallet();
   const { connection } = useConnection();
   const { publicKey, sendTransaction } = useWallet();
@@ -103,7 +108,7 @@ export const DonateView: FC = ({setOpenSendTransaction}) => {
                   </div>
 
                   <div className="text-start">
-                    <InputView name="Amount" placeholder="amount" clickhandle={(e) => setAmount(e.target.value)} />
+                    <InputView name="Amount" placeholder="amount" clickHandle={(e) => setAmount(e.target.value)} />
                   </div>
 
                     <div className="mb-6 text-center">

@@ -1,9 +1,17 @@
-import React, { FC } from "react";
+import React, { FC, Dispatch, SetStateAction } from "react";
 import { MdGeneratingTokens } from "react-icons/md";
 import { IoIosArrowRoundForward } from "react-icons/io";
 import { LuArrowRightFromLine } from "react-icons/lu";
 
-export const ToolView:FC = ({
+interface ToolViewProps {
+  setOpenAirdrop: Dispatch<SetStateAction<boolean>>;
+  setOpenContact: Dispatch<SetStateAction<boolean>>;
+  setOpenCreateModal: Dispatch<SetStateAction<boolean>>;
+  setOpenSendTransaction: Dispatch<SetStateAction<boolean>>;
+  setOpenTokenMetaData: Dispatch<SetStateAction<boolean>>;
+}
+
+export const ToolView:FC<ToolViewProps> = ({
   setOpenAirdrop,
   setOpenContact,
   setOpenCreateModal,

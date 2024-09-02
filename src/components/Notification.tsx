@@ -40,7 +40,7 @@ const NotificationList = () => {
   );
 };
 
-const Notification = ({type, message, description, txid, onHide}) => {
+const Notification = ({type, message, description, txid, onHide}: any) => {
   const { connection } = useConnection();
   const { networkConfiguration } = useNetworkConfiguration();
 

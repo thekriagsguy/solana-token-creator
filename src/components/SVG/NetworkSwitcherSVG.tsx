@@ -1,6 +1,6 @@
 import { FC } from "react";
 
-const NetworkSwitcher: FC = () => {
+const NetworkSwitcherSVG: FC = () => {
   return (
     <>
       <svg
@@ -15,4 +15,4 @@ const NetworkSwitcher: FC = () => {
   );
 };
 
-export default NetworkSwitcher;
+export default NetworkSwitcherSVG;

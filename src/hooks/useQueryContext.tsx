@@ -8,7 +8,7 @@ export default function useQueryContext() {
     const endpoint = cluster ? (cluster as EndpointTypes) : "mainnet";
     const hasClusterOption = endpoint !== "mainnet";
 
-    const fmtUrlWithCluster = (url) => {
+    const fmtUrlWithCluster = (url: any) => {
         if(hasClusterOption) {
             const mark = url.includes("?") ? "&" : "?";
             return decodeURIComponent(`${url}${mark}cluster=${endpoint}`);
